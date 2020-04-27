@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Search recipes</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+
+        <script src="{{ url_for('static', filename='index.js') }}"></script> 
+
+    </head>
+    <body>
+        <div class="container">
+            <h1>Search for recipes</h1>
+
+            <form id="form">
+                <!-- Example single danger button -->
+                <div class="form-group">
+                    <label for="meal_type">Meal Type</label>
+                    <select class="form-control" id="meal_type">
+                        {% for record in records %}
+                            <option value="{{ record.subgroup }}">{{ record.subgroup }}</option>
+                        {% endfor %}
+                </select>
+                <br>
+        
+                <label for="ingredients">What's your favorite ingredient?</label>
+                <input class="form-control" type="text" id="ingredients" name="ingredients" list="ingredients-list">
+                <datalist id="ingredients-list">
+                    {% for ingredient in ingredients %}
+                        <option value="{{ ingredient.CHECK_name }}"></option> 
+                    {% endfor %}
+                </datalist>
+              
+                <br>
+        
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Search Recipes</button>
+                </div>
+        
+                <br>    
+
+            </form>
+            <div id="result"></div>
+        </div>
+    </body>
+</html>
+
